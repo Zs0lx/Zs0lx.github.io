@@ -236,6 +236,39 @@
   animation: glitchtext 3s infinite;
   position: relative;
 }
+.hero-main{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;                /* EZ A TÁBLA GAP */
+  padding: 22px;
+  place-items: stretch;
+}
+.cell{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px;             /* belső levegő */
+}
+a.gombok{
+  width: 100%;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-decoration: none;
+  text-align: center;
+
+  margin: 0;
+  min-width: 0;
+
+  letter-spacing: .14em;
+  line-height: 1;
+}
+
+
 </style>
 
   <body>
@@ -243,11 +276,11 @@
   <div class="hero-wrap">
     <h1 class="brand">Zs0lx</h1>
     <div class="panel hero-main">
-    <a href="cartman.gif" class="gombok">Writeups</a>
-<a href="cartman.gif" class="gombok">side-projects</a>
-<a href="cartman.gif" class="gombok">BIO</a>
-<a href="cartman.gif" class="gombok">Contacts</a>
-    </div>
+  <div class="cell"><a href="cartman.html" class="gombok">WRITEUPS</a></div>
+  <div class="cell"><a href="cartman.html" class="gombok">SIDE-PROJECTS</a></div>
+  <div class="cell"><a href="cartman.html" class="gombok">BIO</a></div>
+  <div class="cell"><a href="cartman.html" class="gombok">CONTACTS</a></div>
+</div>
   </div>
 </section>
 

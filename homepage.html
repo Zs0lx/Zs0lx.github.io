@@ -4,535 +4,252 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cyberpunk Pages</title>
+<style>
+ 
+.hero{
+  min-height: 100vh;               
+  display: flex;
+  align-items: center;             
+  justify-content: center;         
+}
 
-  <style>
-    /* ====== CYBERPUNK THEME (no JS) ====== */
-    :root{
-      --bg0:#060712;
-      --bg1:#0b0f2a;
-      --glass:rgba(10, 14, 40, .55);
+.hero-main{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 10px;
+  width: 100%;
+  max-width: 520px;                
+}
 
-      --neon-cyan:#27f5ff;
-      --neon-purple:#a855ff;
-      --neon-pink:#ff3bd4;
-      --neon-yellow:#ffe66d;
 
-      --text:#e8ecff;
-      --muted:#aab3da;
+.hero-main{
+  
+  padding: 22px;
+  border-radius: 22px;
+  border: 1px solid rgba(172,226,246,.22);
+  background:
+    radial-gradient(500px 260px at 10% 10%, rgba(172,226,246,.14), transparent 60%),
+    radial-gradient(520px 260px at 90% 40%, rgba(197,19,171,.12), transparent 62%),
+    rgba(10,14,40,.55);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.06) inset,
+    0 0 26px rgba(172,226,246,.12),
+    0 0 46px rgba(197,19,171,.10);
 
-      --border:rgba(120, 140, 255, .25);
-      --shadow: 0 0 18px rgba(39,245,255,.18), 0 0 34px rgba(168,85,255,.12);
-    }
+ 
+  place-items: stretch;
+}
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--text);
-      background:
-        radial-gradient(900px 500px at 10% 15%, rgba(39,245,255,.15), transparent 60%),
-        radial-gradient(700px 500px at 90% 20%, rgba(255,59,212,.14), transparent 55%),
-        radial-gradient(800px 550px at 60% 90%, rgba(255,230,109,.11), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-    }
 
-    /* subtle scanlines + noise */
-    body::before{
-      content:"";
-      position:fixed; inset:0;
-      background:
-        repeating-linear-gradient(
-          to bottom,
-          rgba(255,255,255,.06) 0px,
-          rgba(255,255,255,.06) 1px,
-          rgba(0,0,0,0) 3px,
-          rgba(0,0,0,0) 6px
-        );
-      mix-blend-mode: overlay;
-      opacity:.08;
-      pointer-events:none;
-    }
-    body::after{
-      content:"";
-      position:fixed; inset:0;
-      background:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
-      opacity:.06;
-      pointer-events:none;
-    }
+.gombok{
+  width: 100%;    
+  margin: 0;       
+  min-width: 0;    
+}
 
-    a{ color:inherit; text-decoration:none; }
-    .wrap{
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 28px 18px 64px;
-      position:relative;
-    }
+  
 
-    /* ====== NAV ====== */
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:14px 16px;
-      border:1px solid var(--border);
-      border-radius: 16px;
-      background: linear-gradient(135deg, rgba(10,14,40,.7), rgba(10,14,40,.35));
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
-    }
-    .brand{
-      display:flex; align-items:center; gap:12px;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      font-weight:800;
-      font-size:14px;
-    }
-    .logo{
-      width:34px; height:34px; border-radius:10px;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(39,245,255,.75), transparent 55%),
-        radial-gradient(circle at 70% 70%, rgba(255,59,212,.7), transparent 55%),
-        linear-gradient(135deg, rgba(168,85,255,.85), rgba(39,245,255,.25));
-      box-shadow: 0 0 16px rgba(39,245,255,.25), 0 0 22px rgba(255,59,212,.15);
-      position:relative;
-      border:1px solid rgba(255,255,255,.14);
-    }
-    .logo::after{
-      content:"";
-      position:absolute; inset:6px;
-      border-radius:8px;
-      border:1px dashed rgba(255,230,109,.55);
-      opacity:.6;
-    }
-    .navlinks{
-      display:flex; flex-wrap:wrap; gap:8px;
-      align-items:center;
-      justify-content:flex-end;
-    }
-    .chip{
-      padding:9px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-weight:600;
-      font-size:13px;
-      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
-    }
-    .chip:hover{
-      transform: translateY(-1px);
-      border-color: rgba(39,245,255,.45);
-      box-shadow: 0 0 12px rgba(39,245,255,.18);
-      color: var(--text);
-    }
+.gombok{
+  width: 90%;
+  height: 50px;                    
+  margin: 0;
 
-    /* ====== HERO ====== */
-    .hero{
-      margin-top: 22px;
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:18px;
-      align-items:stretch;
-    }
-    @media (max-width: 900px){
-      .hero{ grid-template-columns: 1fr; }
-    }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .panel{
-      border-radius: 22px;
-      border:1px solid var(--border);
-      background: linear-gradient(135deg, rgba(12,16,48,.75), rgba(12,16,48,.35));
-      backdrop-filter: blur(12px);
-      box-shadow: var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
 
-    /* neon corners */
-    .panel::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        linear-gradient(90deg, transparent, rgba(39,245,255,.55), transparent),
-        linear-gradient(180deg, transparent, rgba(255,59,212,.45), transparent);
-      opacity:.18;
-      pointer-events:none;
-    }
+@media (max-width: 520px){
+  .hero-main{
+    grid-template-columns: 1fr;
+    max-width: 360px;
+  }
+}
 
-    .hero-main{
-      padding: 26px 22px 22px;
-    }
-    .kicker{
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      font-size:12px;
-      letter-spacing:.18em;
-      text-transform:uppercase;
-      color: var(--muted);
-    }
-    .dot{
-      width:10px; height:10px; border-radius:999px;
-      background: radial-gradient(circle at 30% 30%, #fff, rgba(255,255,255,.25));
-      box-shadow: 0 0 10px rgba(39,245,255,.55), 0 0 18px rgba(168,85,255,.35);
-      border:1px solid rgba(255,255,255,.25);
-    }
+ 
+ body {background-color: rgb(9, 1, 29);}
 
-    h1{
-      margin: 14px 0 10px;
-      font-size: clamp(34px, 4vw, 54px);
-      line-height: 1.02;
-      letter-spacing: -0.02em;
-    }
-    .neon{
-      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple), var(--neon-pink), var(--neon-yellow));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-      text-shadow:
-        0 0 18px rgba(39,245,255,.16),
-        0 0 30px rgba(255,59,212,.10);
-    }
-    .lead{
-      margin: 0 0 18px;
-      color: var(--muted);
-      max-width: 62ch;
-      line-height: 1.55;
-      font-size: 15.5px;
-    }
+.gombok{
+  --bg: rgba(12,16,48,.35);
+  --primary: #ace2f6;   
+  --secondary: #c513ab; 
+  --ink: #071021;
 
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top: 14px;
-    }
-    .btn{
-      padding: 11px 14px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      color: var(--text);
-      font-weight: 700;
-      font-size: 13.5px;
-      letter-spacing:.02em;
-      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      border-color: rgba(255,230,109,.55);
-      box-shadow: 0 0 12px rgba(255,230,109,.14), 0 0 22px rgba(39,245,255,.12);
-    }
-    .btn.primary{
-      border-color: rgba(39,245,255,.55);
-      background:
-        radial-gradient(120% 120% at 10% 0%, rgba(39,245,255,.25), transparent 50%),
-        radial-gradient(120% 120% at 100% 40%, rgba(255,59,212,.18), transparent 55%),
-        rgba(255,255,255,.04);
-      box-shadow: 0 0 14px rgba(39,245,255,.14);
-    }
-    .btn.primary:hover{
-      border-color: rgba(255,59,212,.6);
-      box-shadow: 0 0 16px rgba(255,59,212,.16), 0 0 26px rgba(39,245,255,.12);
-    }
+  position: relative;
+  display: inline-block;
+  padding: 14px 22px;
+  margin: 10px;
+  min-width: 190px;
 
-    /* ====== SIDE CARD ====== */
-    .hero-side{
-      padding: 22px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      justify-content:space-between;
-    }
-    .statgrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-    }
-    .stat{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      padding: 12px 12px;
-      position:relative;
-      overflow:hidden;
-    }
-    .stat::after{
-      content:"";
-      position:absolute; inset:-2px;
-      background: radial-gradient(240px 120px at 20% 10%, rgba(39,245,255,.22), transparent 60%),
-                  radial-gradient(240px 120px at 80% 90%, rgba(255,59,212,.16), transparent 60%);
-      opacity:.55;
-      pointer-events:none;
-    }
-    .stat b{ display:block; font-size:18px; letter-spacing:.02em; }
-    .stat span{ color: var(--muted); font-size:12px; }
+  font: 800 14px/1 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  letter-spacing: .12em;
+  text-transform: uppercase;
 
-    .mini{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      padding: 14px;
-    }
-    .mini h3{
-      margin:0 0 8px;
-      font-size:13px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color: var(--muted);
-    }
-    .list{
-      margin:0; padding:0;
-      list-style:none;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-    .list a{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      padding:10px 10px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.10);
-      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
-    }
-    .list a:hover{
-      transform: translateY(-1px);
-      border-color: rgba(168,85,255,.55);
-      box-shadow: 0 0 14px rgba(168,85,255,.12);
-    }
-    .tag{
-      font-size:11px;
-      color: var(--muted);
-      padding: 4px 8px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      white-space:nowrap;
-    }
+  color: #eaf2ff;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(172,226,246,.22);
+  border-radius: 16px;
 
-    /* ====== SECTIONS ====== */
-    .grid{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 14px;
-    }
-    .col-7{ grid-column: span 7; }
-    .col-5{ grid-column: span 5; }
-    .col-6{ grid-column: span 6; }
-    .col-12{ grid-column: span 12; }
-    @media (max-width: 900px){
-      .col-7,.col-5,.col-6{ grid-column: span 12; }
-    }
+  cursor: pointer;
+  user-select: none;
 
-    .section{
-      padding: 18px 18px 16px;
-    }
-    .section h2{
-      margin: 0 0 10px;
-      font-size: 14px;
-      letter-spacing:.16em;
-      text-transform:uppercase;
-      color: var(--muted);
-    }
-    .cards{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 10px;
-    }
-    .card{
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      padding: 14px 14px;
-      position:relative;
-      overflow:hidden;
-      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
-    }
-    .card:hover{
-      transform: translateY(-1px);
-      border-color: rgba(39,245,255,.45);
-      box-shadow: 0 0 16px rgba(39,245,255,.12);
-    }
-    .card .title{
-      display:flex; align-items:center; justify-content:space-between;
-      gap:12px;
-      margin-bottom: 6px;
-      font-weight:800;
-    }
-    .card p{
-      margin:0;
-      color: var(--muted);
-      line-height: 1.55;
-      font-size: 13.5px;
-    }
+  box-shadow:
+    0 0 0 2px rgba(172,226,246,.18) inset,
+    0 0 18px rgba(172,226,246,.14),
+    0 0 30px rgba(197,19,171,.10);
 
-    /* neon divider */
-    .divider{
-      height:1px;
-      background: linear-gradient(90deg, transparent, rgba(39,245,255,.5), rgba(255,59,212,.4), rgba(255,230,109,.35), transparent);
-      opacity:.75;
-      margin: 14px 0 12px;
-    }
+  transition: transform .12s ease, border-color .12s ease, filter .12s ease;
+  isolation: isolate;
+  overflow: hidden;
+}
 
-    /* footer */
-    footer{
-      margin-top: 18px;
-      padding: 14px 6px 0;
-      color: var(--muted);
-      font-size: 12px;
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-  </style>
-</head>
 
-<body>
-  <div class="wrap">
+.gombok{
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 92% 100%, 0 100%, 0 22%);
+}
 
-    <header class="nav">
-      <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <div class="mono" style="opacity:.85;">NEON//NODE</div>
-          <div style="font-size:11px;color:var(--muted);letter-spacing:.14em;">cyberpunk pages</div>
-        </div>
-      </div>
 
-      <nav class="navlinks">
-        <a class="chip" href="#projects">Projektek</a>
-        <a class="chip" href="#about">Rólam</a>
-        <a class="chip" href="#contact">Kontakt</a>
-      </nav>
-    </header>
+.gombok::before{
+  content:"";
+  position:absolute; inset:-2px;
+  background:
+    linear-gradient(90deg, rgba(172,226,246,.85), rgba(197,19,171,.75), rgba(46,112,175,.75));
+  z-index:-2;
+  filter: blur(.0px);
+}
+.gombok::after{
+  content:"";
+  position:absolute; inset:2px;
+  background:
+    radial-gradient(140% 120% at 0% 0%, rgba(172,226,246,.18), transparent 55%),
+    radial-gradient(140% 120% at 100% 60%, rgba(197,19,171,.16), transparent 58%),
+    rgba(10,14,40,.55);
+  z-index:-1;
+}
 
-    <section class="hero">
-      <div class="panel hero-main">
-        <div class="kicker"><span class="dot"></span> ONLINE / SIGNAL LOCKED</div>
-        <h1>
-          <span class="neon">Cyberpunk</span> vibe<br/>
-          GitHub Pages oldal
-        </h1>
-        <p class="lead">
-          Kék–lila–rózsaszín–sárga neon, üveg-mintás panelek, finom scanline és “hologram” hangulat —
-          tiszta HTML+CSS, JS nélkül.
-        </p>
 
-        <div class="actions">
-          <a class="btn primary" href="#projects">▶ Nézd a projekteket</a>
-          <a class="btn" href="https://github.com/" target="_blank" rel="noreferrer">⌁ GitHub</a>
-          <a class="btn" href="#contact">✉ Kontakt</a>
-        </div>
+.gombok span{ position:relative; z-index:1; } 
 
-        <div class="divider"></div>
+.gombok::marker{ content:""; } 
 
-        <div class="mono" style="color:var(--muted);font-size:12px;letter-spacing:.06em;">
-          STATUS: <span style="color:var(--neon-cyan);">ACTIVE</span> · THEME: <span style="color:var(--neon-pink);">NEON</span> · BUILD: <span style="color:var(--neon-yellow);">STATIC</span>
-        </div>
-      </div>
+.gombok .noop{ display:none; } 
 
-      <aside class="panel hero-side">
-        <div class="statgrid">
-          <div class="stat"><b>04</b><span>Aktív projektek</span></div>
-          <div class="stat"><b>12</b><span>Mini build</span></div>
-          <div class="stat"><b>∞</b><span>Neon energia</span></div>
-          <div class="stat"><b>99%</b><span>Vibe</span></div>
-        </div>
+.gombok::selection{ background: rgba(197,19,171,.25); }
 
-        <div class="mini">
-          <h3>Quick links</h3>
-          <ul class="list">
-            <li><a href="#"><span>CV / Portfólió PDF</span><span class="tag">download</span></a></li>
-            <li><a href="#"><span>Discord</span><span class="tag">social</span></a></li>
-            <li><a href="#"><span>Email</span><span class="tag">contact</span></a></li>
-          </ul>
-        </div>
-      </aside>
-    </section>
+.gombok:hover{
+  transform: translateY(-1px);
+  border-color: rgba(197,19,171,.45);
+  filter: saturate(1.05);
+}
 
-    <section class="grid">
-      <div class="panel section col-7" id="projects">
-        <h2>Projektek</h2>
-        <div class="cards">
-          <a class="card" href="#">
-            <div class="title">
-              <span>Neon Dashboard</span>
-              <span class="tag">UI</span>
-            </div>
-            <p>Üveg panelek, neon kiemelések, minimal layout. (Tedd ide a saját linked.)</p>
-          </a>
 
-          <a class="card" href="#">
-            <div class="title">
-              <span>Arcade Mini Game</span>
-              <span class="tag">JS</span>
-            </div>
-            <p>Retro hangulat modern neon színekkel. GitHub repo + live demo.</p>
-          </a>
+.gombok::backdrop{ } 
 
-          <a class="card" href="#">
-            <div class="title">
-              <span>API Status Monitor</span>
-              <span class="tag">tools</span>
-            </div>
-            <p>Egyszerű statikus oldal, ami jól néz ki és gyorsan tölt.</p>
-          </a>
-        </div>
-      </div>
+.gombok::after,
+.gombok::before{ pointer-events:none; }
 
-      <div class="panel section col-5" id="about">
-        <h2>Rólam</h2>
-        <div class="card">
-          <div class="title"><span>Bio</span><span class="tag">2026</span></div>
-          <p>
-            Ide jöhet 3–5 sor rólad: mivel foglalkozol, mik a fókuszterületeid, mit építesz.
-            Tipp: tegyél be 1-2 mérhető dolgot (pl. “frontend”, “Python”, “UI/UX”).
-          </p>
-        </div>
-        <div class="divider"></div>
-        <div class="card">
-          <div class="title"><span>Stack</span><span class="tag">skills</span></div>
-          <p class="mono">HTML · CSS · JS · React · Node · Python</p>
-        </div>
-      </div>
 
-      <div class="panel section col-12" id="contact">
-        <h2>Kontakt</h2>
-        <div class="cards" style="grid-template-columns: repeat(3, 1fr); gap:10px;">
-          <a class="card" href="mailto:te@pelda.hu">
-            <div class="title"><span>Email</span><span class="tag">mail</span></div>
-            <p class="mono">te@pelda.hu</p>
-          </a>
-          <a class="card" href="https://github.com/" target="_blank" rel="noreferrer">
-            <div class="title"><span>GitHub</span><span class="tag">code</span></div>
-            <p class="mono">github.com/USER</p>
-          </a>
-          <a class="card" href="#" target="_blank" rel="noreferrer">
-            <div class="title"><span>Linktree</span><span class="tag">links</span></div>
-            <p class="mono">linktr.ee/USER</p>
-          </a>
-        </div>
-      </div>
-    </section>
+.gombok:hover::before{
+  animation: edgeflicker .9s steps(2, end) infinite;
+}
+.gombok:hover::after{
+  animation: bgflicker .9s steps(2, end) infinite;
+}
 
-    <footer>
-      <div>© <span class="neon">NEON//NODE</span> — statikus cyberpunk theme</div>
-      <div class="mono">DEPLOY: GitHub Pages · /index.html</div>
-    </footer>
 
+.gombok i{ display:none; }
+.gombok:hover{
+  text-shadow:
+    2px 0 rgba(172,226,246,.45),
+   -2px 0 rgba(197,19,171,.35);
+}
+
+
+.gombok:hover{
+  background:
+    linear-gradient(90deg, rgba(172,226,246,.12), rgba(197,19,171,.10)),
+    rgba(255,255,255,.04);
+}
+.gombok:hover{
+  box-shadow:
+    0 0 0 2px rgba(172,226,246,.22) inset,
+    0 0 18px rgba(172,226,246,.18),
+    0 0 36px rgba(197,19,171,.14),
+    0 0 70px rgba(46,112,175,.10);
+}
+
+.gombok:active{
+  transform: translateY(0px) scale(.99);
+}
+
+
+@media (prefers-reduced-motion: reduce){
+  .gombok:hover::before,
+  .gombok:hover::after{ animation: none; }
+}
+
+
+@keyframes edgeflicker{
+  0%   { clip-path: polygon(0 0,100% 0,100% 100%,0 100%); opacity:1; transform: translate(0,0); }
+  10%  { clip-path: polygon(0 2%,100% 2%,100% 6%,0 6%); transform: translate(-2px,0); }
+  18%  { clip-path: polygon(0 78%,100% 78%,100% 100%,0 100%); transform: translate(3px,0); }
+  26%  { clip-path: polygon(0 40%,100% 40%,100% 52%,0 52%); transform: translate(-3px,0); }
+  34%  { clip-path: polygon(0 0,0 0,0 0,0 0); opacity:.9; }
+  40%  { clip-path: polygon(0 60%,100% 60%,100% 78%,0 78%); transform: translate(2px,0); opacity:1; }
+  55%  { clip-path: polygon(0 10%,100% 10%,100% 0,0 0); transform: translate(-2px,0); }
+  70%  { clip-path: polygon(0 0,100% 0,100% 100%,0 100%); transform: translate(0,0); }
+  100% { clip-path: polygon(0 0,100% 0,100% 100%,0 100%); }
+}
+@keyframes bgflicker{
+  0%   { opacity:1; transform: translate(0,0); filter: brightness(1); }
+  12%  { opacity:.9; transform: translate(2px,0); filter: brightness(1.15); }
+  22%  { opacity:1; transform: translate(-2px,0); filter: brightness(.95); }
+  35%  { opacity:.85; transform: translate(3px,0); }
+  50%  { opacity:1; transform: translate(0,0); }
+  65%  { opacity:.92; transform: translate(-3px,0); filter: brightness(1.1); }
+  100% { opacity:1; transform: translate(0,0); filter: brightness(1); }
+}
+ 
+  .brand{
+    font-size: 48px;
+  }
+
+.brand{
+  font-family: 'Orbitron', monospace;
+  font-size: 72px;
+  font-weight: 900;
+  text-align: center;
+  margin: 0 0 40px 0;
+  letter-spacing: .15em;
+  color: #ace2f6;
+  text-transform: uppercase;
+  
+  background: linear-gradient(135deg, #ace2f6 0%, #c513ab 50%, #2e70af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  filter: drop-shadow(0 0 20px rgba(172,226,246,.5))
+          drop-shadow(0 0 40px rgba(197,19,171,.3));
+  
+  animation: glitchtext 3s infinite;
+  position: relative;
+}
+</style>
+
+  <body>
+   <section class="hero">
+  <div class="hero-wrap">
+    <h1 class="brand">Zs0lx</h1>
+    <div class="panel hero-main">
+      <button class="gombok">Writeups</button>
+      <button class="gombok">side-projects</button>
+      <button class="gombok">BIO</button>
+      <button class="gombok">Contacts</button>
+    </div>
   </div>
+</section>
+
 </body>
 </html>

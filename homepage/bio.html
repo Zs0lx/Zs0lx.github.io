@@ -374,7 +374,7 @@
         <div class="panel-inner">
           <aside class="avatar" aria-label="Sidebar">
             <div class="pfp" role="img" aria-label="Avatar placeholder">
-              <small>Avatar / kép helye<br><span class="kbd">assets/hacker-hamster.gif</span> (opcionális)</small>
+              <small>Avatar / kép helye<br><span class="kbd">https://zs0lx.github.io/assets/hacker-hamster.gif</span> (opcionális)</small>
             </div>
 
             <div class="tags" aria-label="Tags">
@@ -391,16 +391,15 @@
             <h2 class="bio-title"><span class="dot"></span>About me</h2>
 
             <p class="bio-text" id="bioText">
-              <!-- IDE ÍRD A BIO SZÖVEGET (ezt a részt cseréld le a saját szövegedre) -->
 17-year-old beginner pentester from Hungary with a focus on web pentesting and hardware experimentation.           </p>
 
             <div class="actions" aria-label="Actions">
-              <a class="btn link" href="./index.html">
+              <a class="btn link" href="https://zs0lx.github.io/homepage/index.html">
                 <span class="ic">↩</span>
                 Vissza
               </a>
 
-              <a class="btn link" href="./contacts.html">
+              <a class="btn link" href="https://zs0lx.github.io/homepage/contacts.html">
                 <span class="ic">✉</span>
                 Contact
               </a>
@@ -425,7 +424,6 @@
       toastEl._t = setTimeout(() => toastEl.classList.remove("show"), 1200);
     }
 
-    // Tag click -> copy to clipboard
     document.querySelectorAll(".tag").forEach(tag => {
       tag.addEventListener("click", async () => {
         const text = tag.getAttribute("data-copy") || tag.textContent.trim();
@@ -438,7 +436,6 @@
       });
     });
 
-    // Copy bio
     document.getElementById("copyBioBtn").addEventListener("click", async () => {
       const bio = document.getElementById("bioText").innerText.trim();
       try{
@@ -449,7 +446,6 @@
       }
     });
 
-    // Ctrl+K -> toggle glow pulse
     let glow = false;
     window.addEventListener("keydown", (e) => {
       if((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k"){
@@ -464,9 +460,7 @@
       }
     });
 
-    // Optional: show cartman.gif if exists (no error if not)
-    // If you want it, replace the .pfp content with an <img>.
-    // Keeping it as placeholder to avoid broken images by default.
+   
   </script>
 </body>
 </html>
